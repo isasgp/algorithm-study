@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class P_14501 {
+// 백트래킹
+public class P_14501_1 {
 	private static BufferedReader br;
 	private static int N, result;
 	private static int[] T, P;
@@ -22,6 +23,7 @@ public class P_14501 {
 			T[i] = Integer.parseInt(st.nextToken());
 			P[i] = Integer.parseInt(st.nextToken());
 		}
+		br.close();
 	}
 	
 	private static void solution(int index, int p) {
