@@ -3,12 +3,12 @@ package codingTest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-//백트래킹
-public class P_12865_1 {
+public class P_12865_3 {
 	private static BufferedReader br;
-	private static int N, K, result;
+	private static int N, K;
 	private static int[] W, V;
 	
 	private static void input() throws IOException {
@@ -26,29 +26,25 @@ public class P_12865_1 {
 			W[i] = Integer.parseInt(st.nextToken());
 			V[i] = Integer.parseInt(st.nextToken());
 		}
+
+		br.close();
 	}
 	
-	private static void solution(int index, int w, int v) {
-		if(index == N && K >= w) {
-			result = Math.max(result, v);
-			return;
-		} else if(K < w) {
-			return;
-		}
-		// 선택할 경우
-		solution(index+1, w+W[index], v+V[index]);
-		// 선택하지 않을 경우
-		solution(index+1, w, v);
-	}
 
 	public static void main(String[] args) throws IOException {
 		input();
 		
-		result = Integer.MIN_VALUE;
+		int[][] dp = new int[N+1][K+1];
 		
-		solution(0, 0, 0);
-		
-		System.out.println(result);
+		for(int index=1; index<N+1; index++) {
+			for(int weight=1; weight<K+1; weight++) {
+				if(weight < K) {
+					dp[index][weight] = dp[index-1][weight];
+				}
+				dp[index][weight] = Math.max(dp[index-1][weight+W[index-1]] + V[index-1], dp[index-1][weight]);
+			}
+		}
+		System.out.println(dp[N][K]);
 	}
-
+	
 }

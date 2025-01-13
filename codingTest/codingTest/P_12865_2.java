@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+//다이나믹 프로그래밍 탑다운
 public class P_12865_2 {
 	private static BufferedReader br;
 	private static int N, K;
@@ -48,7 +49,7 @@ public class P_12865_2 {
 		if(dp[index][w] != -1)
 			return dp[index][w];
 		
-		dp[index][w] = Math.max(solution(index+1, w+W[index]) + V[index], solution(index+1, w));
+		dp[index][w] = Math.max(solution(index-1, w+W[index]) + V[index], solution(index+1, w));
 		
 		return dp[index][w];
 

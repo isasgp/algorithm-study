@@ -3,14 +3,13 @@ package codingTest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-// 다이나믹 프로그래밍 탑다운
-public class P_14501_2 {
+//다이나믹 프로그래밍 바텀업
+public class P_14501_3 {
 	private static BufferedReader br;
 	private static int N;
-	private static int[] T, P, dp;
+	private static int[] T, P;
 	
 	private static void input() throws IOException {
 		br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,33 +24,26 @@ public class P_14501_2 {
 			P[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		dp = new int[N+1];
-		
-		Arrays.fill(dp, -1);
-		
 		br.close();
 	}
 	
-	private static int solution(int index) {
-		if(index == N) {
-			return 0;
-		} else if(index > N) {
-			return Integer.MIN_VALUE;
-		}
-		
-		if(dp[index] != -1) {
-			return dp[index];
-		}
-		
-		dp[index] = Math.max(solution(index+T[index]) + P[index], solution(index+1));
-		
-		return dp[index];
-	}
 
 	public static void main(String[] args) throws IOException {
 		input();
 		
-		System.out.println(solution(0));
+		int[] dp = new int[N+1];
+		
+		for(int i=N-1; i>=0; i--) {
+			if(i+T[i] > N) {
+				dp[i] = dp[i+1];
+			} else {
+				dp[i] = Math.max(dp[i+T[i]] + P[i], dp[i+1]);
+			}
+		}
+		
+		System.out.println(dp[0]);
+		
+		
 	}
 
 }
