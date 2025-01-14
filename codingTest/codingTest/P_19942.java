@@ -36,6 +36,7 @@ public class P_19942 {
 			v[i] = Integer.parseInt(st.nextToken());
 			c[i] = Integer.parseInt(st.nextToken());
 		}
+		br.close();
 	}
 	
 	private static void solution(int index, long P, long F, int S, int V, int C, StringBuilder useList) {

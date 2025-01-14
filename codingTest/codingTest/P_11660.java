@@ -35,6 +35,8 @@ public class P_11660 {
 			point2[i][0] = Integer.parseInt(st.nextToken());
 			point2[i][1] = Integer.parseInt(st.nextToken());
 		}
+		
+		br.close();
 	}
 	
 	private static int calculate(int[] param1, int[] param2) {

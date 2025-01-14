@@ -29,6 +29,8 @@ public class P_14719 {
 			if(H < temp) {temp = H;}
 			array[i] = temp;
 		}
+		
+		br.close();
 	}
 	
 	private static int arrayMax(int[] param) {

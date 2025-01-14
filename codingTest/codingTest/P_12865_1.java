@@ -26,6 +26,8 @@ public class P_12865_1 {
 			W[i] = Integer.parseInt(st.nextToken());
 			V[i] = Integer.parseInt(st.nextToken());
 		}
+		
+		br.close();
 	}
 	
 	private static void solution(int index, int w, int v) {

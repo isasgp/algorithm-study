@@ -23,6 +23,7 @@ public class P_2961 {
 			S[i] = Long.parseLong(st.nextToken());
 			B[i] = Long.parseLong(st.nextToken());
 		}
+		br.close();
 	}
 	
 	private static void solution(int index, long sour, long bitter, int use) {
