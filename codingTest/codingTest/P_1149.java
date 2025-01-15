@@ -35,7 +35,7 @@ public class P_1149 {
 		dp[0] = house[0];
 		
 		for(int index=1; index<N; index++) {
-			dp[index][0] = Math.min(dp[index-1][1], dp[index-1][1]) + house[index][0];
+			dp[index][0] = Math.min(dp[index-1][1], dp[index-1][2]) + house[index][0];
 			dp[index][1] = Math.min(dp[index-1][0], dp[index-1][2]) + house[index][1];
 			dp[index][2] = Math.min(dp[index-1][0], dp[index-1][1]) + house[index][2];
 		}
