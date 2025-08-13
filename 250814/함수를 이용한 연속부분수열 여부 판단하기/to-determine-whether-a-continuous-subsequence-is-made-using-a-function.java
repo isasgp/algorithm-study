@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Main {
     public static boolean isRight(int[] arrA, int[] arrB) {
         if(arrA.length == 1 || arrA.length == 1)
-            return false;
+            return arrA[0] == arrB[0];
 
         for(int idx=0; idx<arrA.length; idx++) {
             if(arrA[idx] == arrB[0]) {
