@@ -2,12 +2,11 @@ import java.util.Scanner;
 public class Main {
 
     public static boolean condition(int num) {
-        while(num > 0) {
-            if(num%3 == 0)
+        if(num%3 == 0)
                 return true;
+        while(num > 0) {
             if(num%10 == 3 || num%10 == 6 || num%10 == 9)
                 return true;
-            
             num /= 10;
         }
         return false;
