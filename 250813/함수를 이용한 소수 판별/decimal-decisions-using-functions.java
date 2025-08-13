@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static boolean isPrimeNum(int num) {
-        int numSqrt = (int)Math.sqrt(num) + 1;
+        int numSqrt = (int)Math.sqrt(num);
         for(int i=2; i<= numSqrt; i++) {
             if(num%i == 0)
                 return false;
