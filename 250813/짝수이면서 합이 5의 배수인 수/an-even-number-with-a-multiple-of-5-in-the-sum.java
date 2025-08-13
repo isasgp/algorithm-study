@@ -3,7 +3,7 @@ public class Main {
 
     public static boolean isFiveMultiple(int n) {
         if(n<10 || n>99) {return false;}
-        return ((n/10)+(n%10)) % 5 == 0;
+        return ((n/10)+(n%10)) % 5 == 0 && ((n/10)+(n%10)) % 10 != 0;
     }
         
     public static void main(String[] args) {
