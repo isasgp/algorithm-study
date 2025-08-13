@@ -2,14 +2,14 @@ import java.util.Scanner;
 public class Main {
     public static boolean isRight(int[] arrA, int[] arrB) {
         for(int idx=0; idx<=arrA.length-arrB.length; idx++) {
+            int cnt = 0;
             if(arrA[idx] == arrB[0]) {
-                int cnt = 0;
                 for(int i=0; i<arrB.length; i++) {
                     if(arrA[idx+i] == arrB[i])
                         cnt++;
                 }
-                return cnt == arrB.length;
             }
+            if (cnt == arrB.length) return true;
         }
         return false;
 
