@@ -4,7 +4,7 @@ public class Main {
         if(arrA.length == 1 || arrA.length == 1)
             return arrA[0] == arrB[0];
 
-        for(int idx=0; idx<=arrA.len-arrB.length; idx++) {
+        for(int idx=0; idx<=arrA.length-arrB.length; idx++) {
             if(arrA[idx] == arrB[0]) {
                 int cnt = 0;
                 for(int i=1; i<arrB.length; i++) {
