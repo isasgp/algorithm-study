@@ -4,7 +4,7 @@ public class Main {
 
     public static int gcd(int n, int m) {
         if(n > m) {
-            int temp = n;
+            int temp = m;
             m = n;
             n = temp;
         }
