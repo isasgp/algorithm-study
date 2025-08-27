@@ -36,7 +36,7 @@ public class Main {
             }
         }
 
-        int result = Integer.MIN_VALUE;
+        int result = 0;
 
         for(int x=0; x<N; x++) {
             for(int y=0; y<N; y++) {
