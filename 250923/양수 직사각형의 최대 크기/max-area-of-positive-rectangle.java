@@ -9,7 +9,7 @@ public class Main {
         int count = 0;
         for(int i=x1; i<=x2; i++){
             for(int j=y1; j<=y2; j++) {
-                if(grid[i][j] < 0)
+                if(grid[i][j] <= 0)
                     return -1;
                 count++;
             }
@@ -19,7 +19,7 @@ public class Main {
     }
 
     private static int solution(int x1, int y1) {
-        if(grid[x1][y1] < 0)
+        if(grid[x1][y1] <= 0)
             return -1;
 
         int maxSize = Integer.MIN_VALUE;
