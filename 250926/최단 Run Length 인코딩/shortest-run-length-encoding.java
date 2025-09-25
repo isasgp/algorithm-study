@@ -10,10 +10,10 @@ public class Main {
     }
 
     private static String encoding(String str) {
-        if(str.length() == 1) {return str;}
-
         int cnt = 1;
         StringBuilder sb = new StringBuilder();
+
+
         int idx = 0;
         for(int i=0; i<str.length(); i++) {
             char currentChar = str.charAt(i);
