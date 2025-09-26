@@ -60,7 +60,7 @@ public class Main {
             }
         }
         
-        for(int i=0; i<MAX_HOUSE; i++)
+        for(int i=0; i<=MAX_HOUSE; i++)
             result[i] = new ArrayList<>();
 
         for(int k=1; k<=maxK; k++) {
