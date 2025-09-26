@@ -70,7 +70,7 @@ public class Main {
                         continue;
 
                     visited[i][j] = 1;
-                    result[k].add(solution(i, j, k));
+                    result[k].add(solution(i, j, k)+1);
                 }
             }
             cleanVisit();
@@ -82,8 +82,11 @@ public class Main {
             if(resultVal < result[k].size()) {
                 resultIdx = k;
                 resultVal = result[k].size();
+                // for(int i=0; i<result[k].size(); i++)
+                //     System.out.println(k+"일때, "+result[k].get(i));
             } 
         }
+
         System.out.println(resultIdx+" "+resultVal);
     }
 }
