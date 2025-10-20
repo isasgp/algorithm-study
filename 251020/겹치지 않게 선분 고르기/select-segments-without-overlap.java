@@ -23,11 +23,12 @@ public class Main {
 
         Line thisLine = arr.get(index);
 
-        if(lastR < thisLine.r) {
+        if(lastR < thisLine.l) {
             solution(index + 1, count + 1, thisLine.r);
-        } else {
-            solution(index + 1, count, lastR);
         }
+        
+        solution(index + 1, count, lastR);
+        
     }
 
     public static void main(String[] args) {
