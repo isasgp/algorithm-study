@@ -3,6 +3,7 @@ import java.util.*;
 public class Main {
     private static int n, m;
     private static ArrayList<Horizon> arr;
+    private static ArrayList<Horizon> selectedLines;
     private static int[] finalPosition;
     private static int result = 1_000_000;
 
@@ -45,8 +46,8 @@ public class Main {
     private static boolean compareToFinal() {
         for(int num=0; num<n; num++) {
             int thisNum = num;
-            for(int i=0; i<arr.size(); i++) {
-                int thisBase = arr.get(i).base;
+            for(int i=0; i<selectedLines.size(); i++) {
+                int thisBase = selectedLines.get(i).base;
 
                 if(thisNum == thisBase) {
                     thisNum = move(thisNum, 1);
@@ -60,30 +61,30 @@ public class Main {
         return true;
     }
 
-    private static void solution(int index) {
-        if (arr.size() >= result) {
+    private static void solution(int cnt) {
+        if (selectedLines.size() >= result) {
             return;
         }
 
-        if(index == m) {
+        if(cnt == m) {
             if (compareToFinal()) { 
-                result = Math.min(result, arr.size());
+                result = Math.min(result, selectedLines.size());
             }
             return;
         }
         if(compareToFinal()) {
-            result = Math.min(result, arr.size());
+            result = Math.min(result, selectedLines.size());
+        }
+
+        // 선택 하는 경우
+        for(int base = 0; base<n; base++) {
+            selectedLines.add(new Horizon(base, cnt));
+            solution(cnt + 1);
+            selectedLines.remove(selectedLines.size() - 1); // 백트래킹
         }
 
         // 선택 안하는 경우
-        solution(index+1);
-
-        // 선택 하는 경우 (1 ~ N번째 줄)
-        for(int base=0; base<n; base++) {
-            arr.add(new Horizon(base, index));
-            solution(index+1);
-            arr.remove(arr.size() - 1);
-        }
+        solution(cnt + 1);
     }
 
     public static void main(String[] args) {
@@ -93,6 +94,7 @@ public class Main {
 
         finalPosition = new int[n];
         arr = new ArrayList<>();
+        selectedLines = new ArrayList<>();
 
         for(int i = 0; i < m; i++){
             int a = sc.nextInt() - 1;
@@ -102,8 +104,6 @@ public class Main {
         arr.sort((o1, o2) -> o1.order - o2.order);
 
         calculateFinal();
-
-        arr.clear();
 
         solution(0);
 
