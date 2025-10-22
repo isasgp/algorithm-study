@@ -6,7 +6,7 @@ public class Main {
 
     private static ArrayList<Integer> arr;
 
-    private static int result = 0;
+    private static int result = Integer.MIN_VALUE;
 
     private static int calculateValue() {
         ArrayList<Character> temp = new ArrayList<>(operandType);
@@ -65,7 +65,7 @@ public class Main {
                 operator.add(c);
             }
         }
-        
+
         solution(0);
 
         System.out.println(result);
