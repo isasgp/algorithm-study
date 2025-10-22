@@ -77,11 +77,9 @@ public class Main {
         }
 
         // 선택 하는 경우
-        for(int base = 0; base<n; base++) {
-            selectedLines.add(new Horizon(base, cnt));
-            solution(cnt + 1);
-            selectedLines.remove(selectedLines.size() - 1); // 백트래킹
-        }
+        selectedLines.add(arr.get(cnt));
+        solution(cnt + 1);
+        selectedLines.remove(selectedLines.size() - 1); // 백트래킹
 
         // 선택 안하는 경우
         solution(cnt + 1);
