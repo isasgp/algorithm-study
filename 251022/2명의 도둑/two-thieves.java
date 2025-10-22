@@ -20,7 +20,7 @@ public class Main {
         if(x1 != x2)
             return true;
 
-        if(y1 <= y2 + m - 1 || y1 + m - 1 >= y2)
+        if((y1 >= y2 && y1 <= y2 + m - 1) || (y1 + m - 1 >= y2 && y1 <= y2))
             return false;
 
         return true;
