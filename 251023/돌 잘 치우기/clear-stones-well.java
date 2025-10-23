@@ -98,7 +98,7 @@ public class Main {
         
         for(int i=idx; i<stone.size(); i++) {
             pick.add(stone.get(i));
-            solution(cnt + 1, idx + 1);
+            solution(cnt + 1, in + 1);
             pick.remove(pick.size() - 1);
         }
     }
