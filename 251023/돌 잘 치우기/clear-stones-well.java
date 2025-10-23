@@ -9,6 +9,8 @@ public class Main {
     private static ArrayList<Point> stone;
     private static ArrayList<Point> pick;
 
+    private static int[][] startPoints = new int[MAX_NUM*MAX_NUM+1][2];
+
     private static int result = 0;
 
     static class Point{
@@ -46,49 +48,45 @@ public class Main {
             newGrid[pickStone.x][pickStone.y] = 0;
         }
 
-        // for(int i=0; i<n; i++) {
-        //     for(int j=0; j<n; j++) {
-        //         System.out.print(newGrid[i][j]+" ");
-        //     }
-        //     System.out.println();
-        // }
-        // System.out.println();
-
         int[] dx = {-1, 1, 0, 0};
         int[] dy = {0, 0, -1, 1};
+        int sum = 0;
+        for(int i=0; i<k; i++) {
 
-        int cnt = 1;
-        while(!q.isEmpty()) {
-            Point p = q.poll();
-            int thisX = p.x;
-            int thisY = p.y;
-
-            if(newGrid[thisX][thisY] == 1)
-                return 0;
-            
-
-            for(int dir=0; dir<4; dir++) {
-                int newX = thisX + dx[dir];
-                int newY = thisY + dy[dir];
-                if(canGo(newX, newY) && newGrid[newX][newY] != 1) {
-                    cnt++;
-                    visited[newX][newY] = true;
-                    q.add(new Point(newX, newY));
-                }
-            }
-        }
-
-        return cnt;
-    }
-
-    private static void solution(int cnt, int startX, int startY) {
-        if(cnt == m) {
-            initialize();
+            int cnt = 1;
+            int startX = startPoints[i][0];
+            int startY = startPoints[i][1];
 
             q.add(new Point(startX, startY));
             visited[startX][startY] = true;
 
+            while(!q.isEmpty()) {
+                Point p = q.poll();
+                int thisX = p.x;
+                int thisY = p.y;
+
+                for(int dir=0; dir<4; dir++) {
+                    int newX = thisX + dx[dir];
+                    int newY = thisY + dy[dir];
+                    if(canGo(newX, newY) && newGrid[newX][newY] != 1) {
+                        cnt++;
+                        visited[newX][newY] = true;
+                        q.add(new Point(newX, newY));
+                    }
+                }
+            }
+            sum += cnt;
+        }
+        
+
+        return sum;
+    }
+
+    private static void solution(int cnt) {
+        if(cnt == m) {
             int distance = move();
+
+            initialize();
 
             result = Math.max(result, distance);
 
@@ -97,7 +95,7 @@ public class Main {
         
         for(int i=0; i<stone.size(); i++) {
             pick.add(stone.get(i));
-            solution(cnt + 1, startX, startY);
+            solution(cnt + 1);
             pick.remove(pick.size() - 1);
         }
     }
@@ -122,19 +120,14 @@ public class Main {
             }
         }
 
-        int[][] startPoints = new int[k][2];
+        startPoints = new int[k][2];
         for (int i = 0; i < k; i++) {
             startPoints[i][0] = sc.nextInt() - 1;
             startPoints[i][1] = sc.nextInt() - 1;
         }
 
-        for(int i=0; i<1; i++) {
-            int currX = startPoints[i][0];
-            int currY = startPoints[i][1];
+        solution(0);
 
-            solution(0, currX, currY);
-
-        }
-        System.out.println(result);
+        System.out.println(--result);
     }
 }
