@@ -52,11 +52,14 @@ public class Main {
         int[] dy = {0, 0, -1, 1};
         int sum = 0;
         for(int i=0; i<k; i++) {
-
-            int cnt = 1;
+            int cnt = 0;
+            
             int startX = startPoints[i][0];
             int startY = startPoints[i][1];
 
+            if(canGo(startX, startY))
+                cnt = 1;
+            
             q.add(new Point(startX, startY));
             visited[startX][startY] = true;
 
@@ -128,6 +131,6 @@ public class Main {
 
         solution(0);
 
-        System.out.println(--result);
+        System.out.println(result);
     }
 }
