@@ -85,7 +85,7 @@ public class Main {
         return sum;
     }
 
-    private static void solution(int cnt) {
+    private static void solution(int cnt, int idx) {
         if(cnt == m) {
             int distance = move();
 
@@ -96,9 +96,9 @@ public class Main {
             return;
         }
         
-        for(int i=0; i<stone.size(); i++) {
+        for(int i=idx; i<stone.size(); i++) {
             pick.add(stone.get(i));
-            solution(cnt + 1);
+            solution(cnt + 1, idx + 1);
             pick.remove(pick.size() - 1);
         }
     }
@@ -129,7 +129,7 @@ public class Main {
             startPoints[i][1] = sc.nextInt() - 1;
         }
 
-        solution(0);
+        solution(0, 0);
 
         System.out.println(result);
     }
