@@ -32,13 +32,46 @@ public class Main {
         return cnt;
     }
 
+    private static boolean inRange(int x, int y) {
+        return !(x < 0 || x >= n || y < 0 || y >= m);
+    }
+
     private static boolean canGo(int x, int y) {
-        if(x < 0 || x >= n || y < 0 || y >= m)
+        if(!inRange(x, y))
             return false;
         
         if(visited[x][y])
             return false;
 
+        return true;
+    }
+
+    private static boolean isSurrounded(int x, int y) {
+        Queue<Point> queue = new LinkedList<>();
+        boolean[][] isVisited = new boolean[MAX_NUM+1][MAX_NUM+1];
+
+        queue.add(new Point(x, y));
+        isVisited[x][y] = true;
+
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
+
+        while(!queue.isEmpty()) {
+            Point p = queue.poll();
+            int currX = p.x, currY = p.y;
+            for(int dir=0; dir<4; dir++) {
+                int newX = currX + dx[dir];
+                int newY = currY + dy[dir];
+
+                if(!inRange(newX, newY)) 
+                    return false;
+                
+                if((!isVisited[newX][newY]) && grid[newX][newY] == 0) {
+                    isVisited[newX][newY] = true;
+                    queue.add(new Point(newX, newY));
+                }
+            }
+        }
         return true;
     }
 
@@ -49,23 +82,10 @@ public class Main {
         if(visited[x][y])
             return false;
 
-        int[] dx = {-1, 1, 0, 0};
-        int[] dy = {0, 0, -1, 1};
+        if(isSurrounded(x, y))
+            return false;
 
-        boolean[] isPossible = new boolean[4];
-
-        for(int dir=0; dir<4; dir++) {
-            int newX = x + dx[dir];
-            int newY = y + dy[dir];
-            
-            if(newX < 0 || newX >= n || newY < 0 || newY >= m)
-                return true;
-
-            if(grid[newX][newY] == 0)
-                isPossible[dir] = true;
-        }
-
-        return isPossible[0] || isPossible[1] || isPossible[2] || isPossible[3];
+        return true;
     }
 
     private static void solution() {
@@ -120,7 +140,7 @@ public class Main {
                     }
                 }
             }
-            
+
             beforeCnt = countGlacier();
 
             solution();
