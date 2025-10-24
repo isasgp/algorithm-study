@@ -1,16 +1,16 @@
 import java.util.Scanner;
 public class Main {
-    private static final int MAX_NUM = 1000;
-
-    private static int solution(int n) {
-        int[] dp = new int[MAX_NUM+1];
+    private static final int MAX_NUM = 1_000;
+    private static final int MOD = 10_007;
+    private static long solution(int n) {
+        long[] dp = new long[MAX_NUM+1];
 
         dp[0] = 1;
         dp[1] = 0;
         dp[2] = 1;
 
         for(int i=3; i<=n; i++) {
-            dp[i] = dp[i-2] + dp[i-3];
+            dp[i] = (dp[i-2] + dp[i-3]) % MOD;
         }
 
         return dp[n];
@@ -20,8 +20,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
-        int result = solution(n);
+        long result = solution(n);
 
-        System.out.println(result % 10_007);
+        System.out.println(result);
     }
 }
