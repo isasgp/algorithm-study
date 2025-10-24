@@ -26,6 +26,9 @@ public class Main {
     }
 
     private static int solution(int startX, int startY, int endX, int endY) {
+        if(startX == endX && startY == endY)
+            return 0;
+
         q.add(new Point(startX, startY));
         visited[startX][startY] = true;
 
