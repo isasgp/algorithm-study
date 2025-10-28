@@ -7,20 +7,6 @@ public class Main {
 
     private static void solution(int cnt) {
         if(cnt == n) {
-            int firstNum = arr.get(0);
-            if(n > 1) {
-                boolean isSame = true;
-                for(int i=1; i<arr.size(); i++) {
-                    if(firstNum != arr.get(i)) {
-                        isSame = false;
-                        break;
-                    }
-                }
-                if(isSame)
-                    return;
-            }
-            
-
             for(int i=0; i<arr.size(); i++)
                 System.out.print(arr.get(i)+" ");
             System.out.println();
@@ -28,6 +14,10 @@ public class Main {
         }
 
         for(int i=1; i<=k; i++) {
+            if(n >=3 && cnt >=2) {
+                if(i == arr.get(arr.size()-1) && i == arr.get(arr.size()-2))
+                    continue;
+            }
             arr.add(i);
             solution(cnt + 1);
             arr.remove(arr.size() - 1);
