@@ -9,7 +9,7 @@ public class Main {
     private static int calculate() {
         int score = 0;
         for(int i=0; i<k; i++)
-            if(horse[i] >= m)
+            if(horse[i] >= m-1)
                 score++;
 
         return score;
@@ -23,10 +23,9 @@ public class Main {
         }
 
         for(int i=0; i<k; i++) {
-            // if(horse[i] >= m)
-            horse[i] += nums[i];
+            horse[i] += nums[cnt];
             solution(cnt + 1);
-            horse[i] -= nums[i];
+            horse[i] -= nums[cnt];
         }
 
 
