@@ -1,43 +1,67 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static final int MAX_NUM = 100_000;
-    private static int[] arr = new int[MAX_NUM + 1];
+    private static int n;
+    private static int[] arr;
 
-    private static int solution(int l, int r, int target) {
+    private static int lowerBound(int target) {
+        int left = 0;
+        int right = n - 1;
 
-        if(l <= target && r >= target)
-            return 1;
+        int minIdx = n;
+
+        while(left <= right) {
+            int mid = (left + right) / 2;
+            if(arr[mid] >= target) {
+                minIdx = Math.min(minIdx, mid);
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
         
-        return 0;
+        return minIdx;
+    }
 
+    private static int upperBound(int target) {
+        int left = 0;
+        int right = n - 1;
+
+        int minIdx = n;
+
+        while(left <= right) {
+            int mid = (left + right) / 2;
+            if(arr[mid] > target) {
+                minIdx = Math.min(minIdx, mid);
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        
+        return minIdx;
     }
 
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        
+        n = sc.nextInt();
         int m = sc.nextInt();
-        int[] points = new int[n];
+        arr = new int[n];
         for (int i = 0; i < n; i++) {
-            points[i] = sc.nextInt();
+            arr[i] = sc.nextInt();
         }
 
-        for(int i=0; i<=MAX_NUM; i++) {
-            arr[i] = i;
-        }
+        Arrays.sort(arr);
 
         int a, b;
         for (int i = 0; i < m; i++) {
             a = sc.nextInt();
             b = sc.nextInt();
 
-            int cnt = 0;
-            for(int point: points) {
-                cnt += solution(a, b, point);
-            }
-
-            System.out.println(cnt);
+            System.out.println(upperBound(b) - lowerBound(a));
         }
         
         // Please write your code here.
