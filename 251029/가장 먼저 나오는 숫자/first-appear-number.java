@@ -12,14 +12,16 @@ public class Main {
             int mid = (left + right) / 2;
             
             if(arr[mid] >= target) {
-                midIdx = Math.min(midIdx, mid);
+                if(arr[mid] == target)
+                    midIdx = Math.min(midIdx, mid);
+                
                 right = mid - 1;
             } else {
                 left = mid + 1;
             }
         }
 
-        if(arr[midIdx] != target)
+        if(midIdx == n)
             return -1;
 
         return midIdx + 1;
